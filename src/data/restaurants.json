@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"name": "Restaurant 1",
+		"category": "Fast Food"
+	},
+	{
+		"id": 2,
+		"name": "Restaurant Cafe 2",
+		"category": "Dessert"
+	},
+	{
+		"id": 3,
+		"name": "Blah Blah Coffee",
+		"category": "Dessert"
+	},
+	{
+		"id": 4,
+		"name": "Delicious Pizza",
+		"category": "Pizza"
+	},
+	{
+		"id": 5,
+		"name": "Amazing Chicken",
+		"category": "Chicken"
+	}
+]
