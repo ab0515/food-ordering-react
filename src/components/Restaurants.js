@@ -14,6 +14,11 @@ const useStyles = makeStyles({
 	},
 	restCard: {
 		marginTop: 15,
+		cursor: 'pointer',
+		"&:hover": {
+			backgroundColor: "#cfd8dc"
+		},
+		boxShadow: 3
 	}
 });
 
