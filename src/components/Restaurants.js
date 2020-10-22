@@ -60,7 +60,7 @@ const Restaurants = () => {
 		let key = e.currentTarget.getAttribute("data-key");
 		let idx = restData.findIndex(item => item.id.toString() === key);
 		// console.log(idx);
-		history.push(`/${restData[idx].name}`);
+		history.push(`/restaurants/${restData[idx].name}`);
 	};
 
 	const CardRests = restData .map(item => 

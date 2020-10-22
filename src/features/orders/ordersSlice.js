@@ -4,10 +4,14 @@ const initialState = [];
 
 const ordersSlice = createSlice({
 	name: 'orders',
-	init,
+	initialState,
 	reducers: {
-
+		orderAdded(state, action) {
+			state.push(action.payload);
+		}
 	}
 });
+
+export const { orderAdded } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

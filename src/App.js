@@ -21,7 +21,7 @@ const App = () => {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Restaurants}/>
-        <Route path="/restaurant/:restName" component={Menu} />
+        <Route path="/restaurants/:restName" component={Menu} />
         <Route path="/cart" component={Cart} />
       </Switch>
     </Router>
