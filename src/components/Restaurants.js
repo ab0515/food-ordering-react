@@ -27,38 +27,10 @@ const Restaurants = () => {
 	const classes = useStyles();
 	const history = useHistory();
 
-	// const rests = [
-	// 	{
-	// 		id: 1,
-	// 		name: 'Restaurant 1',
-	// 		category: 'Fast Food'
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		name: 'Restaurant Cafe 2',
-	// 		category: 'Dessert'
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		name: 'Blah Blah Coffee',
-	// 		category: 'Dessert'
-	// 	},
-	// 	{
-	// 		id: 4,
-	// 		name: 'Delicious Pizza',
-	// 		category: 'Pizza'
-	// 	},
-	// 	{
-	// 		id: 5,
-	// 		name: 'Omega Chicken',
-	// 		category: 'Chicken'
-	// 	}
-	// ];
-
 	const handleCardClick = (e) => {
 		// history.push("/")
 		let key = e.currentTarget.getAttribute("data-key");
-		let idx = restData.findIndex(item => item.id.toString() === key);
+		let idx = restData.findIndex(item => item.id === key);
 		// console.log(idx);
 		history.push(`/restaurants/${restData[idx].name}`);
 	};

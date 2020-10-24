@@ -1,0 +1,42 @@
+[
+	{
+		"id": "1",
+		"name": "Angel Hair Spaghetti",
+		"description": "Aenean faucibus rhoncus cursus.",
+		"price": 17.24,
+		"weight": "450g",
+		"selected": false
+	},
+	{
+		"id": "2",
+		"name": "Cream Pasta",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, ac interdum arcu vulputate at.",
+		"price": 19.55,
+		"weight": "400g",
+		"selected": false
+	},
+	{
+		"id": "3",
+		"name": "Carbonara Pasta",
+		"description": "Donec pretium vulputate arcu, ac interdum arcu vulputate at.",
+		"price": 19.55,
+		"weight": "430g",
+		"selected": false
+	},		
+	{
+		"id": "4",
+		"name": "Tiger Shrimp Penne Pasta",
+		"description": "Aenean faucibus rhoncus cursus. Donec pretium vulputate arcu, ac interdum arcu vulputate at.",
+		"price": 22.49,
+		"weight": "430g",
+		"selected": false
+	},
+	{
+		"id": "5",
+		"name": "Basil Pesto Pasta",
+		"description": "Donec pretium vulputate arcu, ac interdum arcu vulputate at.",
+		"price": 19.89,
+		"weight": "430g",
+		"selected": false
+	}
+]
