@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import MenuItem from './MenuItem';
 
-import { Typography, Card, CardContent, Button } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
+import { useSelector } from 'react-redux';
 import { addToCart } from '../features/orders/ordersSlice';
-import menuItems from '../data/menuItems.json';
 
 const useStyles = makeStyles({
 	main: {
@@ -36,6 +36,7 @@ const Menu = () => {
 	let { restName } = useParams();
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const menuItems = useSelector(state => state.orders.orders);
 
 	const [open, setOpen] = useState(false);
 	const [selectedMenu, setSelectedMenu] = useState(0);

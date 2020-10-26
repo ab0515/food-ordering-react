@@ -1,26 +1,29 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Typography, Button } from '@material-ui/core';
+import { Typography, NativeSelect, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { mergeClasses } from '@material-ui/styles';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 
-const useStyles = makeStyles({
-	buttons: {
+const useStyles = makeStyles(theme => ({
+	container: {
 		display: 'flex',
+		flexDirection: 'column',
+		padding: 20
 	},
-	list: {
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120
+	},
+	orderList: {
 		display: 'flex',
+		alignItems: 'center'
 	}
-});
+}));
 
 const Cart = () => {
+	const quantities = Array.from({ length: 50 }, (_, i) => i+1 );
 	const orders = useSelector(state => state.orders.orders);
 	const classes = useStyles();
-
-	console.log(orders);
 
 	const handleOnPlus = (e) => {
 		let i = e.currentTarget.getAttribute("data-key");
@@ -32,30 +35,33 @@ const Cart = () => {
 		orders[i].quantity -= 1;
 	};
 
-	const orderList = (
-		<ul>
-			{ 
-				orders.map((item, idx) => 
-					<li key={item.id}>
-						<div className={mergeClasses.buttons}>
-							<Button data-key={idx} variant="contained" onClick={handleOnPlus}><AddIcon /></Button>
-							<span className={classes.quantity}>{item.quantity}</span>
-							<Button data-key={idx} variant="contained" onClick={handleOnMinus}><RemoveIcon /></Button>
-						</div>
-						{item.name}
-					</li>
-				)
-			}
-		</ul>
-	);
+	const quantityOptions = quantities.map((q, i) => (
+		<option value={i}>{q}</option>
+	));
 
 	return (
-		<div>
+		<div className={classes.container}>
 			<Typography variant="h4">Your order</Typography>
-			<Typography variant="body1">{orders.length > 0 ? 'From ' + orders[0].restName : ''}</Typography>
+			<div className={classes.orderList}>
+			{
+				orders.map((item, i) => { 
+					return item.selected ? (
+						<React.Fragment key={item.id}>
+							<FormControl className={classes.formControl} variant="outlined">
+								<NativeSelect 
+									inputProps={{ name: 'quantities', id: 'outlined-quantities-native' }}
+								>
+									{quantityOptions}
+								</NativeSelect>
+							</FormControl>
 
-			<div className={classes.list}>
-				{orderList}
+							<span>{item.name}</span>	
+						</React.Fragment>
+					) : (
+						null
+					)
+				})
+			}
 			</div>
 		</div>
 	);
