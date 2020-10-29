@@ -26,10 +26,9 @@ const useStyles = makeStyles({
 
 const MenuItem = ({item, onClick}) => {
 	const classes = useStyles();
-	const menuItems = useSelector(state => state.orders.orders);
 
 	return (
-		<Card key={item.id} data-key={item.id} className={`${classes.card} ${item.selected ? classes.selected : ''}`} onClick={onClick}>
+		<Card key={item._id} data-key={item._id} className={`${classes.card} ${item.selected ? classes.selected : ''}`} onClick={onClick}>
 			<CardContent>
 				<Typography variant="subtitle1" className={classes.title}>{item.name}</Typography>
 				<Typography variant="body2" color="textSecondary">{item.description}</Typography>

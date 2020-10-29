@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import Restaurants from './Restaurants';
 
 import { makeStyles } from '@material-ui/styles';
 import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Select } from '@material-ui/core';
@@ -114,6 +115,8 @@ const Admin = () => {
 			<Button variant="outlined" onClick={onAddMenuClick}>Add Menu Item</Button>
 
 			{addRestDialog}
+
+			<Restaurants />
 		</div>
 	);
 };

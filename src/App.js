@@ -22,11 +22,11 @@ const App = () => {
     <Router>
       <NavBar />
       <Switch>
-        {/* <Route exact path="/" component={Restaurants}/> */}
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/restaurants" component={Restaurants} />
-        <Route path="/restaurants/:restName" component={Menu} />
+        <Route exact path="/" component={Restaurants}/>
+        {/* <Route exact path="/" component={Dashboard} /> */}
+        {/* <Route path="/admin" component={Admin} /> */}
+        {/* <Route path="/restaurants" component={Restaurants} /> */}
+        <Route path="/restaurant/:restName" component={Menu} />
         <Route path="/cart" component={Cart} />
       </Switch>
     </Router>

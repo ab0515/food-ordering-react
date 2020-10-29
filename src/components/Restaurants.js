@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
+
 import { Card, CardContent, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-import restData from '../data/restaurants.json';
+// import restData from '../data/restaurants.json';
 
 const useStyles = makeStyles({
 	root: {
@@ -26,17 +28,35 @@ const useStyles = makeStyles({
 const Restaurants = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const [ restaurants, setRestaurants ] = useState([]);
+
+	useEffect(() => {
+		Axios.get('/api/restaurant/getAllRestaurants')
+			.then(res => {
+				if (res.data.success) {
+					console.log(res.data.rest);
+					setRestaurants(res.data.rest);
+				}
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	}, []);
 
 	const handleCardClick = (e) => {
 		// history.push("/")
 		let key = e.currentTarget.getAttribute("data-key");
-		let idx = restData.findIndex(item => item.id === key);
+		let idx = restaurants.findIndex(item => item._id === key);
 		// console.log(idx);
-		history.push(`/restaurants/${restData[idx].name}`);
+		history.push({
+			pathname: `/restaurant/${restaurants[idx].name}`,
+			state: { id: key }
+		});
 	};
 
-	const CardRests = restData .map(item => 
-		<Card key={item.id} data-key={item.id} className={classes.restCard} onClick={handleCardClick}>
+	// const CardRests = restData.map(item => 
+	const CardRests = restaurants.map(item =>
+		<Card key={item._id} data-key={item._id} className={classes.restCard} onClick={handleCardClick}>
 			<CardContent>
 				<Typography variant="h5">{item.name}</Typography>
 				<Typography variant="body2" component="p">{item.category}</Typography>
