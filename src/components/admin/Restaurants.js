@@ -8,7 +8,6 @@ const Restaurants = () => {
 		Axios.get('/api/restaurant/getAllRestaurants')
 			.then(res => {
 				if (res.data.success) {
-					console.log(res.data.rest);
 					setRestaurants(res.data.rest);
 				}
 			})
@@ -21,7 +20,7 @@ const Restaurants = () => {
 		<div>
 			{
 				restaurants.map((item, i) => (
-				<li key={item._id}>{item.name}</li>
+					<li key={item._id}>{item.name}</li>
 				))
 			}
 		</div>

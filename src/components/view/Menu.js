@@ -6,12 +6,9 @@ import MenuItem from './MenuItem';
 
 import { Typography, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-
-// import { useSelector } from 'react-redux';
-import { addToCart } from '../features/orders/ordersSlice';
 
 const useStyles = makeStyles({
 	main: {

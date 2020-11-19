@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import { Card, CardContent, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 // import restData from '../data/restaurants.json';
 
@@ -28,19 +28,36 @@ const useStyles = makeStyles({
 const Restaurants = () => {
 	const classes = useStyles();
 	const history = useHistory();
+
 	const [ restaurants, setRestaurants ] = useState([]);
 
 	useEffect(() => {
-		Axios.get('/api/restaurant/getAllRestaurants')
-			.then(res => {
-				if (res.data.success) {
-					console.log(res.data.rest);
+		let isCancelled = false;
+		// axios.get('/api/restaurant/getAllRestaurants')
+		// 	.then(res => {
+		// 		if (res.data.success) {
+		// 			setRestaurants(res.data.rest);
+		// 		}
+		// 	})
+		// 	.catch(err => {
+		// 		console.error(err);
+		// 	});
+		const runAsync = async () => {
+			try {
+				if (!isCancelled) {
+					let res = await axios.get('/api/restaurant/getAllRestaurants');
 					setRestaurants(res.data.rest);
 				}
-			})
-			.catch(err => {
-				console.error(err);
-			});
+			} catch (e) {
+				if (!isCancelled) {
+					throw e;
+				}
+			}
+		}
+
+		runAsync();
+
+		return () => isCancelled = true;
 	}, []);
 
 	const handleCardClick = (e) => {
