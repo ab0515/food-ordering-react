@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 	form: {
 		display: 'flex',
 		flexDirection: 'column',
-		'& .MuiTextField-root, .MuiButton-root': {
+		'& > *': {
 			width: 350,
 			margin: theme.spacing(1),
 		}
@@ -35,6 +35,17 @@ const useStyles = makeStyles(theme => ({
 	footer: {
 		marginTop: theme.spacing(3),
 	},
+	errorMsg: {
+		borderRadius: 5,
+		borderWidth: 1, borderColor: 'indianred', borderStyle: 'solid',
+		background: '#ffaeae',
+		display: 'flex',
+		justifyContent: 'center',
+		paddingTop: 10, paddingBottom: 10,
+	},
+	smaller: {
+		fontSize: 11,
+	}
 }));
 
 const Login = (props) => {
@@ -60,10 +71,12 @@ const Login = (props) => {
 		} else {
 			Axios.post('/api/user/login', user)
 			.then(res => {
+				console.log(props.history);
 				dispatch(loginUser(res.data));
 				props.history.push('/');
 			})
 			.catch(err => {
+				setInvalidInput(true);
 				console.log(err);
 			});
 		}
@@ -74,6 +87,11 @@ const Login = (props) => {
 			<Paper className={classes.verticalCenter}>
 				<Typography className={classes.boldFont} component="h4">Login</Typography>
 				<form className={classes.form}>
+					{invalidInput && 
+						(<div className={classes.errorMsg}>
+							<Typography className={classes.smaller}>Invalid email or password</Typography>
+						</div>)
+					}
 					<TextField 
 						required
 						error={invalidInput}
@@ -82,7 +100,7 @@ const Login = (props) => {
 						label="Email"
 						variant="outlined"
 						onChange={handleData}
-						helperText={invalidInput ? "Please enter your email" : ""}
+						// helperText={invalidInput ? "Please enter your email" : ""}
 					/>
 					<TextField 
 						required
@@ -93,7 +111,7 @@ const Login = (props) => {
 						type="password"
 						variant="outlined"
 						onChange={handleData}
-						helperText={invalidInput ? "Please enter your password" : ""}
+						// helperText={invalidInput ? "Please enter your password" : ""}
 					/>
 
 					<Button onClick={onSubmit} variant="outlined" color="primary">LOG IN</Button>

@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 const NavBar = () => {
 	const classes = useStyles();
 	const history = useHistory();
-	const user = useSelector(state => state.user);
 
 	const logOutHandler = () => {
 		axios.get('/api/user/logout')
@@ -53,7 +52,6 @@ const NavBar = () => {
 			<div className={classes.navbar__item}>My cart </div>
 			<div className={classes.navbar__item} onClick={logOutHandler}>Log Out</div>
 		</React.Fragment>
-
 	);
 
 	return (
@@ -67,7 +65,7 @@ const NavBar = () => {
 				</ul>
 			</div> */}
 			<div className={classes.navbar__title}><Link to="/" className={classes.appLogo}>FoodOrdering</Link></div>
-			{user.userData && user.userData.isAuth && LoggedInMenu}
+			{LoggedInMenu}
 		</header>
 	);
 }

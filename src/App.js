@@ -10,14 +10,22 @@ import Login from './components/user/Login';
 const App = () => {
   return (
     <Router>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route exact path="/" component={Auth(Restaurants)}/>
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/" component={Auth(Restaurants)}/> */}
+        <Route component={ProtectedLayout} />
       </Switch>
     </Router>
   );
 };
+
+const ProtectedLayout = () => (
+  <div>
+    <NavBar />
+    <Route exact path="/" component={Auth(Restaurants)}></Route>
+  </div>
+);
 
 export default App;

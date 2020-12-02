@@ -15,7 +15,6 @@ export default function (ComposedComponent) {
 				try {
 					let res = await axios.get('/api/user/auth');
 					let user = await res.data;
-					console.log(user);
 					dispatch(authUser(user));
 					setUser(user);
 
